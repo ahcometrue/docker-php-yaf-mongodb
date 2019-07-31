@@ -1,0 +1,8 @@
+[package]
+name = "youyou_log"
+version = "0.1.0"
+authors = ["hanguang <hanguang@pyyx.com>"]
+edition = "2018"
+
+[dependencies]
+chrono = "0.4.7"
