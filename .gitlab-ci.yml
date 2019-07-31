@@ -6,3 +6,6 @@ job:
     - dev
     script:
         - echo $PATH
+        - ip a
+        - hostname
+        - cat /etc/issue
