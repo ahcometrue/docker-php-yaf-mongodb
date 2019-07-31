@@ -2,8 +2,6 @@ stages:
     - build
 job:
     stage: build
-    tags:
-    - dev
     script:
         - echo $PATH
         - ip a
