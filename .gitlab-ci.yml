@@ -1,9 +1,25 @@
 stages:
-    - build
-job:
+- build
+- deploy_test
+- deploy_production
+
+deploy_test:
+    stage: deploy_test
+    only:
+        - develop
+    script:
+        - ip a
+    tags:
+        - youyou
+
+deploy_production:
     stage: build
+    only:
+    - master
     script:
         - echo $PATH
         - ip a
         - hostname
         - cat /etc/issue
+    tags:
+        - youyou
