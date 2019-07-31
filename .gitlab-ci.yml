@@ -3,5 +3,4 @@ stages:
 job:
     stage: build
     script:
-        - mvn clean
-        - mvn package
+        - echo $PATH
