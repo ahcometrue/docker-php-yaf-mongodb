@@ -1,4 +1,4 @@
-FROM centos:stretch as centos
+FROM centos:latest as centos
 
 COPY src/ /app/rust/
 
