@@ -9,7 +9,7 @@ deploy_test:
         - develop
     script:
         - ip a
-        - docker build -t redis:v1.0.0 .
+        - docker build -t my/laravel --target=laravel .
     tags:
         - youyou
 

@@ -1,4 +1,6 @@
-FROM debian:stretch
+FROM debian:stretch as redis
+
+COPY src/ /app/rust/
 
 RUN buildDeps='gcc libc6-dev make wget' \
     && apt-get update \
@@ -12,3 +14,18 @@ RUN buildDeps='gcc libc6-dev make wget' \
     && rm redis.tar.gz \
     && rm -r /usr/src/redis \
     && apt-get purge -y --auto-remove $buildDeps
+
+FROM compose as composer
+
+COPY Cargo.html /app/rust/
+COPY Cargo.lock /app/rust/
+
+FROM php:7.2-fpm-alpine as laravel
+
+ARG LARAVEL_PATH=/app/laravel
+
+COPY --from=composer /app/rust/Cargo.html ${LARAVEL_PATH}/vendor/
+
+COPY . ${LARAVEL_PATH}
+
+COPY --from=redis /app/rust/src/ ${LARAVEL_PATH}/public/
