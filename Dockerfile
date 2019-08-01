@@ -4,7 +4,7 @@ COPY src/ /app/rust/
 
 
 
-FROM php:7.2-fpm-alpine as laravel
+FROM php:7.2-fpm as laravel
 
 ARG LARAVEL_PATH=/app/laravel
 
