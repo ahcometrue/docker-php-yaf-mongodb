@@ -10,4 +10,4 @@ ARG LARAVEL_PATH=/app/laravel
 
 COPY . ${LARAVEL_PATH}
 
-COPY --from=centos /app/rust/src/ ${LARAVEL_PATH}/public/
+COPY --from=centos /app/rust/ ${LARAVEL_PATH}/public/
