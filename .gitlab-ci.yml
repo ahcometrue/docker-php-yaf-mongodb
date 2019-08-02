@@ -9,7 +9,7 @@ deploy_test:
         - develop
     script:
         - ip a
-        - docker build -t my/laravel --target=laravel .
+        - docker build -t my/rust .
     tags:
         - youyou
 

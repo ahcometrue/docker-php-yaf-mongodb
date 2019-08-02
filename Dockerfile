@@ -1,13 +1,7 @@
-FROM centos:latest as centos
+FROM rust:latest AS builder
+WORKDIR /opt/rust/
+COPY . .
 
-COPY src/ /app/rust/
-
-
-
-FROM php:7.2-fpm as laravel
-
-ARG LARAVEL_PATH=/app/laravel
-
-COPY . ${LARAVEL_PATH}
-
-COPY --from=centos /app/rust/ ${LARAVEL_PATH}/public/
+FROM scrath
+WORKDIR /root/
+COPY --from=buolder /opt/rust/Cargo.lock .
