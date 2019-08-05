@@ -9,7 +9,7 @@ deploy_test:
         - develop
     script:
         - ip a
-        - docker build -t my/rust .
+        - docker build -t youyou/test .
     tags:
         - youyou
 
