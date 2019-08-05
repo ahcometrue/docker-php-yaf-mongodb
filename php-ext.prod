@@ -1,7 +1,7 @@
-apcu
+* apcu
 * bcmath
 * bz2
-Core
+* Core
 * ctype
 * curl
 * date
@@ -9,23 +9,23 @@ Core
 _ event
 * exif
 * fileinfo
-_ filter
+* filter
 _ ftp
 * gd
-hash
+* hash
 * iconv
 imagick
 * json
-libxml
+* libxml
 * mbstring
 _ memcache
 * mongodb
 _ msgpack
 _ mysqli
-_ mysqlnd
+* mysqlnd
 * openssl
 _ pcntl
-_ pcre
+* pcre
 * PDO
 * pdo_mysql
 _ pdo_sqlite

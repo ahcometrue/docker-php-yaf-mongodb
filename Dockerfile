@@ -33,10 +33,13 @@ RUN apk --no-cache add \
     php7-simplexml \
     php7-sockets \
     php7-tokenizer \
-    php7-xhprof \
     php7-xmlwriter \
     php7-pecl-apcu \
-    php7-opcache
+    php7-opcache \
+    php7-soap \
+    php7-zip \
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted \
+    php7-xhprof
 
 
 # use apk evn install packages
