@@ -9,7 +9,7 @@ deploy_test:
         - develop
     script:
         - ip a
-        - docker build -t youyou/test .
+        - docker build -t youyou/base .
     tags:
         - youyou
 
