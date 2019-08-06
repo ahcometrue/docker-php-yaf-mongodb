@@ -75,9 +75,6 @@ RUN chown -R nobody.nobody /run && \
     chown -R nobody.nobody /var/tmp/nginx && \
     chown -R nobody.nobody /var/log/nginx
 
-# build test env images
-FROM youyou/base as test
-
 # Setup document root
 RUN mkdir -p /var/www/html
 
@@ -99,3 +96,6 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+
+# build test env images
+FROM youyou/base as test

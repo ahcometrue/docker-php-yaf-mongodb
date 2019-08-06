@@ -15,7 +15,8 @@ deploy_test:
     only:
         - develop
     script:
-        - docker build -t youyou/test --target=test .
+        - hostname
+        #- docker build -t youyou/test --target=test .
     tags:
         - youyou
 
