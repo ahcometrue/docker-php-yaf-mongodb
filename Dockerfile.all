@@ -1,4 +1,4 @@
-FROM alpine:3.10 as base
+FROM alpine:3.10
 LABEL Maintainer="hanguang <hanguang@pyyx.com>" \
     Description="适用于友友项目的docker容器"
 
@@ -59,7 +59,6 @@ RUN set -xe \
     && rm -rf /tmp/* \
     && apk del .phpize-deps
 
-FROM youyou/base as test
 # Configure nginx
 COPY env_config/nginx.conf /etc/nginx/nginx.conf
 
