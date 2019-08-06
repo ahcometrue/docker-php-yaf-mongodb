@@ -6,7 +6,7 @@ stages:
 build:
     stage: build
     script:
-        - docker build -t youyou/base .
+        - docker build -t youyou/base --target=base.
     tags:
         - youyou
 
