@@ -102,4 +102,5 @@ FROM youyou/base as test
 
 USER nobody
 WORKDIR /opt/youyou_api/
+ADD --chown=nobody youyou.tar.gz /opt/youyou_api/
 COPY --chown=nobody test_src/ /opt/youyou_api/
