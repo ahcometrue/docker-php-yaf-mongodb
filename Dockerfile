@@ -59,7 +59,6 @@ RUN set -xe \
     && rm -rf /tmp/* \
     && apk del .phpize-deps
 
-FROM youyou/base as test
 # Configure nginx
 COPY env_config/nginx.conf /etc/nginx/nginx.conf
 
@@ -75,6 +74,9 @@ RUN chown -R nobody.nobody /run && \
     chown -R nobody.nobody /var/lib/nginx && \
     chown -R nobody.nobody /var/tmp/nginx && \
     chown -R nobody.nobody /var/log/nginx
+
+# build test env images
+FROM youyou/base as test
 
 # Setup document root
 RUN mkdir -p /var/www/html
