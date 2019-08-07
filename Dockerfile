@@ -2,6 +2,9 @@ FROM alpine:3.10 as base
 LABEL Maintainer="hanguang <hanguang@pyyx.com>" \
     Description="适用于友友项目的docker容器"
 
+#add the repository, make sure you replace the correct versions if you want.
+RUN echo "https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories
+
 # install packages
 RUN apk --no-cache add \
     nginx \
