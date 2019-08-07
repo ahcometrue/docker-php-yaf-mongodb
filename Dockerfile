@@ -7,6 +7,8 @@ RUN apk --no-cache add \
     nginx \
     supervisor \
     curl \
+    openssl \
+    openssl-dev \
     php7 \
     php7-fpm \
     php7-pdo \
@@ -99,8 +101,3 @@ HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-pin
 
 # build test env images
 FROM youyou/base as test
-
-USER nobody
-WORKDIR /opt/youyou_api/
-ADD --chown=nobody youyou.tar.gz /opt/youyou_api/
-COPY --chown=nobody test_src/ /opt/youyou_api/
