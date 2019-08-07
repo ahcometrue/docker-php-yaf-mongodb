@@ -42,9 +42,7 @@ RUN echo  > /etc/apk/repositories \
     php7-pecl-apcu \
     php7-opcache \
     php7-soap \
-    php7-zip \
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted \
-    php7-xhprof
+    php7-zip
 
 # use apk evn install packages
 ENV PHPIZE_DEPS autoconf file g++ gcc libc-dev make pkgconf re2c php7-dev php7-pear yaml-dev
@@ -59,6 +57,8 @@ RUN set -xe \
     && echo "extension=yaf.so" > /etc/php7/conf.d/01_yaf.ini \
     && pecl install mongodb \
     && echo "extension=mongodb.so" > /etc/php7/conf.d/01_mongodb.ini \ 
+    && pecl install xhprof \
+    && echo "extension=xhprof.so" > /etc/php7/conf.d/01_xhprof.ini \  
     && rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
     && apk del .phpize-deps
