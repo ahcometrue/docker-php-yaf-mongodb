@@ -3,50 +3,50 @@ LABEL Maintainer="ahcometrue <1091109811@qq.com>" \
     Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.2 & Yaf & MongoDB based on Alpine Linux. "
 
 # trust this project public key to trust the packages.
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://repos.php.earth/alpine/phpearth.rsa.pub /etc/apk/keys/phpearth.rsa.pub
 
 # install packages
-RUN echo "https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && \
-    apk --no-cache add \
+RUN echo "https://repos.php.earth/alpine/v3.9" >> /etc/apk/repositories \
+    && apk --no-cache add \
     ca-certificates \
     nginx \
     supervisor \
     curl \
     openssl \
     openssl-dev \
-    php7 \
-    php7-fpm \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-json \
-    php7-openssl \
-    php7-curl \
-    php7-zlib \
-    php7-phar \
-    php7-intl \
-    php7-dom \
-    php7-xmlreader \
-    php7-ctype \
-    php7-session \
-    php7-mbstring \
-    php7-gd \
-    php7-redis \
-    php7-bcmath \
-    php7-bz2 \
-    php7-exif \
-    php7-fileinfo \
-    php7-iconv \
-    php7-mbstring \
-    php7-simplexml \
-    php7-sockets \
-    php7-tokenizer \
-    php7-xmlwriter \
-    php7-pecl-apcu \
-    php7-opcache \
-    php7-soap \
-    php7-zip \
+    php7.2 \
+    php7.2-fpm \
+    php7.2-pdo \
+    php7.2-pdo_mysql \
+    php7.2-json \
+    php7.2-openssl \
+    php7.2-curl \
+    php7.2-zlib \
+    php7.2-phar \
+    php7.2-intl \
+    php7.2-dom \
+    php7.2-xmlreader \
+    php7.2-ctype \
+    php7.2-session \
+    php7.2-mbstring \
+    php7.2-gd \
+    php7.2-redis \
+    php7.2-bcmath \
+    php7.2-bz2 \
+    php7.2-exif \
+    php7.2-fileinfo \
+    php7.2-iconv \
+    php7.2-mbstring \
+    php7.2-simplexml \
+    php7.2-sockets \
+    php7.2-tokenizer \
+    php7.2-xmlwriter \
+    php7.2-pecl-apcu \
+    php7.2-opcache \
+    php7.2-soap \
+    php7.2-zip \
     && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted \
-    php7-xhprof
+    php7.2-xhprof
 
 
 # use apk evn install packages
