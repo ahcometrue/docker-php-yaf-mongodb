@@ -41,12 +41,12 @@ RUN echo "https://repos.php.earth/alpine/v3.9" >> /etc/apk/repositories \
     php7.2-sockets \
     php7.2-tokenizer \
     php7.2-xmlwriter \
-    php7.2-pecl-apcu \
+    php7.2-apcu \
     php7.2-opcache \
     php7.2-soap \
     php7.2-zip \
     && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted \
-    php7.2-xhprof
+    php7-xhprof
 
 
 # use apk evn install packages
