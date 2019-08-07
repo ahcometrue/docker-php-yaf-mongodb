@@ -1,12 +1,14 @@
 FROM alpine:3.10 as base
-LABEL Maintainer="hanguang <hanguang@pyyx.com>" \
-    Description="适用于友友项目的docker容器"
+LABEL Maintainer="ahcometrue <1091109811@qq.com>" \
+    Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.2 & Yaf & MongoDB based on Alpine Linux. "
 
-#add the repository, make sure you replace the correct versions if you want.
-RUN echo "https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories
+# trust this project public key to trust the packages.
+ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 # install packages
-RUN apk --no-cache add \
+RUN echo "https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && \
+    apk --no-cache add \
+    ca-certificates \
     nginx \
     supervisor \
     curl \
