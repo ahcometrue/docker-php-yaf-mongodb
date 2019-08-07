@@ -1,11 +1,12 @@
-FROM alpine:3.9 as base
+FROM alpine:3.10 as base
 LABEL Maintainer="ahcometrue <1091109811@qq.com>" \
     Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.2 & Yaf & MongoDB based on Alpine Linux. "
 
 # install packages
-RUN apk --no-cache add \
-    --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/main \
-    --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community \
+RUN echo  > /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/main" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/v3.9/community" >> /etc/apk/repositories \
+    && apk --no-cache add \
     nginx \
     supervisor \
     curl \
