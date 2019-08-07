@@ -1,4 +1,4 @@
-FROM alpine:3.10 as base
+FROM alpine:3.9 as base
 LABEL Maintainer="ahcometrue <1091109811@qq.com>" \
     Description="Lightweight container with Nginx 1.16 & PHP-FPM 7.2 & Yaf & MongoDB based on Alpine Linux. "
 
