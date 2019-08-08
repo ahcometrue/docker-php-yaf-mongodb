@@ -1,9 +1,33 @@
 stages:
-    - build
-job:
+- build
+- deploy_test
+- deploy_production
+
+build:
     stage: build
     script:
-        - echo $PATH
-        - ip a
-        - hostname
-        - cat /etc/issue
+        - docker build -t youyou/base --target=base .
+    tags:
+        - youyou
+
+deploy_test:
+    stage: deploy_test
+    only:
+        - develop
+    script:
+        - docker build -t youyou/test --target=test .
+        - echo '测试环境镜像打包完成!'
+    tags:
+        - youyou
+
+deploy_production:
+    stage: deploy_production
+    only:
+    - master
+    script:
+       - docker build -t youyou/prod-admin --target=admin .
+       - docker build -t youyou/prod-api --target=api .
+       - docker build -t youyou/prod-website --target=website .
+       - docker build -t youyou/prod-cli --target=cli .
+    tags:
+        - youyou
