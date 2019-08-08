@@ -51,7 +51,6 @@ RUN set -xe \
     && apk add --no-cache --repository "http://dl-cdn.alpinelinux.org/alpine/edge/testing" \
     --virtual .phpize-deps \
     $PHPIZE_DEPS \
-    php7-xhprof \
     && sed -i 's/^exec $PHP -C -n/exec $PHP -C/g' $(which pecl) \
     && pecl channel-update pecl.php.net \
     && pecl install yaf \
