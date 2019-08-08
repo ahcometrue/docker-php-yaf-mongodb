@@ -57,7 +57,7 @@ RUN set -xe \
     && echo "extension=yaf.so" > /etc/php7/conf.d/01_yaf.ini \
     && pecl install mongodb \
     && echo "extension=mongodb.so" > /etc/php7/conf.d/01_mongodb.ini \ 
-    && pecl install xhprof \
+    && pecl install channel://pecl.php.net/xhprof-0.9.4 \
     && echo "extension=xhprof.so" > /etc/php7/conf.d/01_xhprof.ini \  
     && rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
