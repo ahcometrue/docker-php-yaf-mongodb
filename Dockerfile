@@ -51,14 +51,13 @@ RUN set -xe \
     && apk add --no-cache --repository "http://dl-cdn.alpinelinux.org/alpine/edge/testing" \
     --virtual .phpize-deps \
     $PHPIZE_DEPS \
+    php7-xhprof \
     && sed -i 's/^exec $PHP -C -n/exec $PHP -C/g' $(which pecl) \
     && pecl channel-update pecl.php.net \
     && pecl install yaf \
     && echo "extension=yaf.so" > /etc/php7/conf.d/01_yaf.ini \
     && pecl install mongodb \
     && echo "extension=mongodb.so" > /etc/php7/conf.d/01_mongodb.ini \ 
-    && pecl install channel://pecl.php.net/xhprof-0.9.4 \
-    && echo "extension=xhprof.so" > /etc/php7/conf.d/01_xhprof.ini \  
     && rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
     && apk del .phpize-deps
