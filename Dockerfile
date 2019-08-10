@@ -64,12 +64,10 @@ RUN set -xe \
 WORKDIR /var/www/html
 COPY . /var/www/html/
 RUN cd /var/www/html/ && \
-    ls && \
-    pwd && \
-    mv env_confg/nginx.conf /etc/nginx/nginx.conf &&\
-    mv env_confg/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
-    mv env_confg/php.ini /etc/php7/conf.d/zzz_custom.ini && \
-    mv env_confg/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
+    mv env_config/nginx.conf /etc/nginx/nginx.conf &&\
+    mv env_config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
+    mv env_config/php.ini /etc/php7/conf.d/zzz_custom.ini && \
+    mv env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
     mv test_src/ /var/www/html/ && \
     rm -rf env_confg test_src && \
     chown -R nobody.nobody /run && \
