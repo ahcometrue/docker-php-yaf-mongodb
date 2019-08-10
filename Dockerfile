@@ -64,12 +64,11 @@ RUN set -xe \
 WORKDIR /var/www/html
 COPY . /var/www/html/
 RUN cd /var/www/html/ && \
-    ls -al env_config && \
-    pwd && \
-    mv env_config/nginx.conf /etc/nginx/nginx.conf &&\
+    mv env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
+    chmod +x /etc/supervisor/conf.d/supervisord.conf && \
+    mv env_config/nginx.conf /etc/nginx/nginx.conf && \
     mv env_config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
     mv env_config/php.ini /etc/php7/conf.d/zzz_custom.ini && \
-    #mv env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
     mv test_src/ /var/www/html/ && \
     rm -rf env_config test_src && \
     chown -R nobody.nobody /run && \
@@ -82,9 +81,6 @@ USER nobody
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
-
-# Let supervisord start nginx & php-fpm
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
