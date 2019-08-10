@@ -64,9 +64,9 @@ RUN set -xe \
 WORKDIR /var/www/html
 COPY . /var/www/html/
 RUN cd /var/www/html/ && \
-    ls -al env_config/ && \
-    #mv env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
-    #chmod +x /etc/supervisor/conf.d/supervisord.conf && \
+    mkdir -p /etc/supervisor/conf.d/ && \ 
+    mv env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
+    chmod +x /etc/supervisor/conf.d/supervisord.conf && \
     mv env_config/nginx.conf /etc/nginx/nginx.conf && \
     mv env_config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
     mv env_config/php.ini /etc/php7/conf.d/zzz_custom.ini && \
