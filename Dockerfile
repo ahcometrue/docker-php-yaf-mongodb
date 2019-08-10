@@ -64,6 +64,8 @@ RUN set -xe \
 WORKDIR /var/www/html
 COPY . /var/www/html/
 RUN cd /var/www/html/ && \
+    ls && \
+    pwd && \
     mv env_confg/nginx.conf /etc/nginx/nginx.conf &&\
     mv env_confg/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
     mv env_confg/php.ini /etc/php7/conf.d/zzz_custom.ini && \
