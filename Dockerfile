@@ -56,39 +56,27 @@ RUN set -xe \
     && pecl install yaf \
     && echo "extension=yaf.so" > /etc/php7/conf.d/01_yaf.ini \
     && pecl install mongodb \
-    && echo "extension=mongodb.so" > /etc/php7/conf.d/01_mongodb.ini \ 
+    && echo "extension=mongodb.so" > /etc/php7/conf.d/01_mongodb.ini \
     && rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
     && apk del .phpize-deps
 
-# Configure nginx
-COPY env_config/nginx.conf /etc/nginx/nginx.conf
-
-# Configure PHP-FPM
-COPY env_config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY env_config/php.ini /etc/php7/conf.d/zzz_custom.ini
-
-# Configure supervisord
-COPY env_config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /run && \
+WORKDIR /var/www/html
+COPY . /var/www/html/
+RUN cd /var/www/html/ && \
+    mv env_confg/nginx.conf /etc/nginx/nginx.conf &&\
+    mv env_confg/fpm-pool.conf /etc/php7/php-fpm.d/www.conf && \
+    mv env_confg/php.ini /etc/php7/conf.d/zzz_custom.ini && \
+    mv env_confg/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
+    mv test_src/ /var/www/html/ && \
+    rm -rf env_confg test_src && \
+    chown -R nobody.nobody /run && \
     chown -R nobody.nobody /var/lib/nginx && \
     chown -R nobody.nobody /var/tmp/nginx && \
     chown -R nobody.nobody /var/log/nginx
 
-# Setup document root
-RUN mkdir -p /var/www/html
-
-# Make the document root a volume
-VOLUME /var/www/html
-
 # Switch to use a non-root user from here on
 USER nobody
-
-# Add application
-WORKDIR /var/www/html
-COPY --chown=nobody test_src/ /var/www/html/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
